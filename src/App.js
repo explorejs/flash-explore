@@ -5,13 +5,13 @@ import { useAuth } from "./api/useAuth";
 function App() {
   const [state, setState] = useState({ email: "", password: "" });
   const {
-    logUserIn,
+    // logUserIn,
     registerUser,
-    resextPassword,
-    signOut,
-    authChecked,
-    error,
-    user,
+    // resextPassword,
+    // signOut,
+    // authChecked,
+    // error,
+    // user,
   } = useAuth();
 
   const handleChange = (e) => {
