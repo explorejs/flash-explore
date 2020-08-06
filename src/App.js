@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { useAuth } from "./api/useAuth";
 
 function App() {
+  const [state, setState] = useState({ email: "", password: "" });
+  const {
+    logUserIn,
+    registerUser,
+    resextPassword,
+    signOut,
+    authChecked,
+    error,
+    user,
+  } = useAuth();
+
+  const handleChange = (e) => {
+    // fira;
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!state.email || state.password.length < 6) {
+      return;
+    }
+    registerUser(state.email, state.password);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input name="email" onChange={handleChange} value={state.email} />
+      <input
+        name="password"
+        type="password"
+        onChange={handleChange}
+        value={state.password}
+      />
+      <button onClick={handleSubmit}> Register</button>
     </div>
   );
 }
