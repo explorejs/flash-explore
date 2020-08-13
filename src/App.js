@@ -1,77 +1,21 @@
-import React, { useState } from "react";
-import { Button, TextField } from "@material-ui/core";
-import "./App.css";
-import { useAuth } from "./api/useAuth";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
-function App() {
-  const [state, setState] = useState({ email: "", password: "" });
-  const {
-    // logUserIn,
-    registerUser,
-    // resextPassword,
-    signOut,
-    // authChecked,
-    // error,
-    user,
-  } = useAuth();
-
-  const handleChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!state.email || state.password.length < 6) {
-      return;
-    }
-    registerUser(state.email, state.password);
-  };
-
-  if (user.uid) {
-    return (
-      <div className="App">
-        <h2>Welcome to Flash Explore</h2>
-        <Button onClick={signOut} variant="contained" color="primary">
-          Sign Out
-        </Button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="App">
-      <form className="sign_up">
-        <TextField
-          name="email"
-          onChange={handleChange}
-          value={state.email}
-          type="email"
-          label="email"
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          name="password"
-          type="password"
-          onChange={handleChange}
-          value={state.password}
-          label="password"
-          margin="normal"
-          variant="outlined"
-        />
-        <div className="btn_container">
-          <Button
-            onClick={handleSubmit}
-            variant="contained"
-            color="primary"
-            disabled={state.password.length < 6 || !state.email.includes("@")}
-          >
-            Register
-          </Button>
-        </div>
-      </form>
+const App = () => (
+  <Router>
+    <div>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
     </div>
-  );
-}
+  </Router>
+);
 
 export default App;
