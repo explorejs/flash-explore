@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import "./pages.css";
-import { useAuth } from "../api/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 function Login() {
   const [state, setState] = useState({ email: "", password: "" });

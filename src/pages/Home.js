@@ -1,9 +1,11 @@
 import React from "react";
+import AddTerm from "../components/AddTerm";
 
 const Home = () => {
   return (
     <>
-      <h2>Home</h2>
+      <h2>Welcome</h2>
+      <AddTerm />
     </>
   );
 };
