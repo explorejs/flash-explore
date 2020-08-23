@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { auth, ref } from "./firebase";
+import { auth, ref } from "../api/firebase";
 import md5 from "md5";
 
 export const useAuth = () => {
